@@ -64,12 +64,22 @@ class CalcController{
         this._operation.push(value)
         
         if (this._operation.length > 3) {
-            
-            let last = this._operation.pop()
-            
-            console.log(this._operation)
 
+            this.calc()
         }
+    }
+
+    calc(){
+
+        let last = this._operation.pop()
+
+        let result = eval(this._operation.join(''))
+
+        this._operation = [result, last]
+    }
+
+    setLastNumberToDisplay(){
+        
     }
 
     addOperation(value){
@@ -107,6 +117,8 @@ class CalcController{
 
             let newValue = this.getLastOperation().toString() + value
             this.setLastOperation(parseInt(newValue))
+
+            this.setLastNumberToDisplay()
         
         }
 

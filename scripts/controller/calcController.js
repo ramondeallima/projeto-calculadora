@@ -23,6 +23,8 @@ class CalcController{
             this.setDisplayDateTime()
         }, 1000)
 
+        this.setLastNumberToDisplay()
+
     }
 
     // Método que de fato insere cada evento passado
@@ -40,11 +42,17 @@ class CalcController{
     }
 
     clearAll(){
+    
         this._operation = []
+        this.setLastNumberToDisplay()
+
     }
 
     clearEntry(){
+
         this._operation.pop()
+        this.setLastNumberToDisplay()
+    
     }
     
     getLastOperation(){
@@ -103,6 +111,10 @@ class CalcController{
             
         }
 
+        if (!lastNumber) {
+            lastNumber = 0
+        }
+
         this.displayCalc = lastNumber
     }
 
@@ -158,7 +170,7 @@ class CalcController{
                 this.clearAll()
                 break;
             case 'ce':
-                this.cancelEntry()  
+                this.clearEntry()  
                 break;
             case 'soma':
                 this.addOperation('+')
@@ -176,6 +188,7 @@ class CalcController{
                 this.addOperation('%')
                 break;
             case 'igual':
+                this.calc()
                 break;
             case 'ponto':
                 this.addOperation('.')

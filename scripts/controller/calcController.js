@@ -84,7 +84,7 @@ class CalcController{
         let last = '';
 
         if (this._operation.length > 3) {
-            last = this._operation.pop
+            last = this._operation.pop()
         }
         
         let result = eval(this._operation.join(''))
